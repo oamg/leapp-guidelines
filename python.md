@@ -72,3 +72,20 @@ obvious and easy to understand, which are qualities, not defects. Code that uses
 of nested dictionary and list comprehensions almost always looks scary and it's very hard to deduce the 
 data flow of that particular piece of code. 
 
+### 8. Avoid Deeply Nested Block Scopes
+
+In other words, high cyclomatic complexity is bad (https://en.wikipedia.org/wiki/Cyclomatic_complexity). Reasoning about code
+with so much noise around is difficult, however, there are several ways how to avoid this situation. Instead of `if someCond:`
+followed a by a huge chunk of code, consider the pattern of *eager returns* and simply return as soon as possible
+`if not someCond: return` so that the following block doesn't need to be nested. This is of course not applicable for all
+dark corners of cyclomatic complexity, for nested loops you might want to consider refactoring each loop into it's own
+function or method. While the code will get a little more verbose, and you might face other difficulties like having to pass
+around variables or even promoting some to instance variables, the resulting code is still much simpler to read then
+condensed web of loops mutating maybe tens of local variables.
+ 
+### 9. Write Docstrings That Work Well With Tools
+
+The preferable way of writing docstrings for functions and methods is to use the first style mentioned at
+(https://pythonhosted.org/an_example_pypi_project/sphinx.html#function-definitions). Plenty of editors or plugins are able
+to parse these docstrings and provide targeted code completion and rudimentary validation. For consistency all docstrings
+should start and end with `'''`. In codebases using Python 3.6, prefer type hints.
