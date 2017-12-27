@@ -1,0 +1,33 @@
+---
+- name: Install python, if necessary
+  become: true
+  become_method: sudo
+  raw: "test -e /usr/bin/python || dnf install -y {{ common.python_pkg }}"
+
+- name: Install missing packages, if necessary
+  become: true
+  become_method: sudo
+  dnf:
+      name: "{{ item }}"
+      state: present
+  with_items: "{{ common.packages }}"
+
+- name: Create working dir
+  file:
+      path: "{{ common.workdir }}"
+      state: directory
+
+- name: Create env file
+  file:
+      path: "{{ common.envfile }}"
+      state: touch
+      mode: 0644
+
+- name: Add leapp env file to .bashrc
+  blockinfile:
+      path: "{{ common.bashrc }}"
+      marker: "# {mark} Load leapp environment variables file"
+      block: |
+          if [ -f {{ common.envfile }}  ]; then
+              . {{ common.envfile }}
+          fi

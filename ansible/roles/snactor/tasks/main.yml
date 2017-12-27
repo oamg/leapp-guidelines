@@ -1,0 +1,19 @@
+---
+- name: Install dnf-plugins-core to enable using copr repositories
+  become: true
+  become_method: sudo
+  dnf:
+      name: dnf-plugins-core
+      state: present
+
+- name: Enable leapp repository
+  become: true
+  become_method: sudo
+  raw: "dnf copr enable {{ snactor.repository }} -y"
+
+- name: Install leapp snactor
+  become: true
+  become_method: sudo
+  dnf:
+      name: "{{ snactor.package }}"
+      state: present

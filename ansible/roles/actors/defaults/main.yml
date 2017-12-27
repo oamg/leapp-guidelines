@@ -1,0 +1,8 @@
+---
+actors:
+    repo: https://github.com/leapp-to/leapp-actors.git
+    dest: "{{ common.workdir }}/leapp-actors/"
+    actors_path: "{{ common.workdir }}/leapp-actors/src/actors/"
+    schemas_path: "{{ common.workdir }}/leapp-actors/src/schemas/"
+    packages:
+        - augeas

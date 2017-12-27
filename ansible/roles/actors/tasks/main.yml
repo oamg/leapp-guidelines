@@ -1,0 +1,25 @@
+---
+- name: Get leapp actors main repository
+  git:
+      repo: "{{ actors.repo }}"
+      dest: "{{ actors.dest }}"
+
+- name: Install packages requested by some actors, if necessary
+  become: true
+  become_method: sudo
+  dnf:
+      name: "{{ item }}"
+      state: present
+  with_items: "{{ actors.packages }}"
+
+- name: Add SNACTOR_ACTORS_DIR to leapp env file
+  lineinfile:
+      path: "{{ common.envfile }}"
+      regexp: "^SNACTOR_ACTORS_DIR="
+      line: "SNACTOR_ACTORS_DIR={{ actors.actors_path }}"
+
+- name: Add SNACTOR_SCHEMAS_DIR to leapp env file
+  lineinfile:
+      path: "{{ common.envfile }}"
+      regexp: "^SNACTOR_SCHEMAS_DIR="
+      line: "SNACTOR_SCHEMAS_DIR={{ actors.schemas_path }}"
