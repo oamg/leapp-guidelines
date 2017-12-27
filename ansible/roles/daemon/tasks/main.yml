@@ -1,0 +1,11 @@
+---
+- name: Install packages required by daemon, if necessary
+  become: true
+  become_method: sudo
+  dnf:
+      name: "{{ item }}"
+      state: present
+  with_items: "{{ daemon.packages }}"
+
+- name: Use go get to download leapp daemon and dependencies
+  raw: "go get {{ daemon.repo }}/..."

@@ -1,0 +1,4 @@
+daemon:
+    repo: github.com/leapp-to/leapp-go
+    packages:
+        - golang

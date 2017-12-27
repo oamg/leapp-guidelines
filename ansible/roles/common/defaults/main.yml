@@ -1,0 +1,8 @@
+---
+common:
+    bashrc: "{{ lookup('env', 'HOME') }}/.bashrc"
+    workdir: "{{ lookup('env', 'HOME') }}/leapp"
+    envfile: "{{ lookup('env', 'HOME') }}/.leapp.env"
+    python_pkg: python2
+    packages:
+        - git

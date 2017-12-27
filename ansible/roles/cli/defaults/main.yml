@@ -1,0 +1,4 @@
+---
+cli:
+    repo: https://github.com/leapp-to/leappctl.git
+    dest: "{{ common.workdir }}/leappctl/"
