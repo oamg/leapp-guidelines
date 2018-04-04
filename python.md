@@ -1,4 +1,4 @@
-Coding Guidelines for the Le-App Organization
+Coding Guidelines for the Leapp Organization
 =============================================
 
 While code stylistics (naming, whitespace, structure) is mostly handled by the famous PEP8 - https://www.python.org/dev/peps/pep-0008/
