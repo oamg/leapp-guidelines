@@ -1,5 +1,5 @@
-Coding Guidelines for the Leapp Organization
-=============================================
+Coding Guidelines for the Leapp project
+=======================================
 
 While code stylistics (naming, whitespace, structure) is mostly handled by the famous PEP8 - https://www.python.org/dev/peps/pep-0008/
 there's still much to be defined and codified in terms of code semantics, which is equally important as the overall style.
