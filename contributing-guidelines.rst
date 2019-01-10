@@ -54,3 +54,8 @@ Git Commit Messages
 * Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
 * If you are fixing a GitHub issue, include something like 'Closes issue #xyz'
 * For more best practices, read `How to Write a Git Commit Message <https://chris.beams.io/posts/git-commit/>`_
+
+Contact
+^^^^^^^
+In case of any question, contact us on the freenode.net IRC channel #leapp, or write the question as an issue on
+GitHub.
