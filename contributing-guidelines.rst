@@ -18,7 +18,7 @@ Before you submit your pull request, consider the following guidelines:
      ``git checkout -b bug/my-fix-branch master``
 
 * Include documentation that either describe a change to a behavior or the changed capability to an end user.
-* Commit your changes with message conforming to the [git commit message guidelines](#git-commit-messages).
+* Commit your changes with message conforming to the `Git Commit Messages`_ guidelines.
 * Include tests for the capability you have implemented.
 * Make sure your tests pass. We use Jenkins CI for our automated testing.
 * Push your branch to GitHub:
