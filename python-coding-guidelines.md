@@ -88,4 +88,4 @@ condensed web of loops mutating maybe tens of local variables.
 The preferable way of writing docstrings for functions and methods is to use the first style mentioned at
 (https://pythonhosted.org/an_example_pypi_project/sphinx.html#function-definitions). Plenty of editors or plugins are able
 to parse these docstrings and provide targeted code completion and rudimentary validation. For consistency all docstrings
-should start and end with `'''`. In codebases using Python 3.6, prefer type hints.
+should start and end with `"""`.
