@@ -29,6 +29,7 @@ Before you submit your pull request, consider the following guidelines:
 * Mark your pull request with **[WIP]** (Work In Progress) to get feedback, but prevent merging (for example,
   [WIP] Update CONTRIBUTING.rst).
 * If you are fixing a GitHub issue, include the issue number you are fixing, e.g. 'Closes issue #xyz'.
+* Description of the PR should clearly state what is being changed and the rationale for the change.
 
 If we suggest changes, follow these rules:
 ------------------------------------------
