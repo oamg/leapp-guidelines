@@ -1,4 +1,6 @@
-All project under the OAMG should use the same schema for names of RPM builds,
+# Naming schema of Leapp-related packages
+
+All projects under the OAMG should use the same schema for names of RPM builds,
 to be able to simply and fast find specific builds. The schema itself looks
 like that (NVR without %{dist}):
 
