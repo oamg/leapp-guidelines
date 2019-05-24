@@ -15,8 +15,8 @@ multiple inheritance in the first place.
 ### 2. Avoid Operator Overloading
 
 With the exception of mathematics there's usually very little reason for succumbing to the mysterious and
-arcane arts of operator overloading. Why is math OK? Because operator overloading makes it consistent 
-with how *everybody* assumes the given operator works given how it works in math itself. 
+arcane arts of operator overloading. Why is math OK? Because operator overloading makes it consistent
+with how *everybody* assumes the given operator works given how it works in math itself.
 There's little benefit in operator overloading otherwise, because different people have different assumptions
 and while you think that it's pretty clear that invalid state should make the object equal to `None`, well, pretty
 much everyone else is going to find this behavior confusing (http://stackoverflow.com/questions/371266/checking-c-sharp-new-initialisation-for-null/371286),
@@ -27,10 +27,10 @@ some particular operator, you might have no idea that `some_var` even *is* an in
 
 ### 3. Avoid 'In-Your-Face' error/exception messages
 
-Exceptions or terminal error messages should *always* give you enough context to either fix the problem on the OS level, if applicable, or 
+Exceptions or terminal error messages should *always* give you enough context to either fix the problem on the OS level, if applicable, or
 know the exact location and reason why the error was raised, given you need to fix it in code.
 Even some shady corners of Python base library will sometimes simply tell you `Permission denied` when you're trying to access
-a resource for which you don't have sufficient permission, which makes the message exceptionally unhelpful in case your application 
+a resource for which you don't have sufficient permission, which makes the message exceptionally unhelpful in case your application
 manages multiple resources in a loop. All you end up doing is catch and re-raise the exception with more helpful message.
 
 #### 3.1. Type Your Exceptions
@@ -43,20 +43,30 @@ failure modes, which will always help at making the code more robust.
 
 Probably apart from function decorators, there's no legitimate reason for including `**kwargs` in your function signatures, ever.
 Think of function signatures in terms of binding contracts between *caller* and *callee*, the caller knows how to invoke
-the particular function (callee) simply by looking at the signature. In the context of contracts, `**kwargs` essentially 
+the particular function (callee) simply by looking at the signature. In the context of contracts, `**kwargs` essentially
 feels like "whatever, dude", because in the best case scenario the valid kwargs are documented in the function's doc string
 (which is still going to stop code completion tools to a grinding halt), in the worst case you are going on a chase and will need
 to inspect the code of at least one function body - granted the `**kwargs` are not passed around like a hot potato, in which case
 your best bet is to resurrect the long forgotten art of "printf debugging" and sprinkle the code with a bunch of `print` calls
 here and there.
 
-### 5. Avoid * Imports and Sort Imports Alphabetically
+### 5. Import things the right way
 
-So called "Star" imports import every module member that's name doesn't start with `_` into the current scope, which can quickly
-lead to name clashes and funny errors. If you need to use plenty of members from some module, use the `import module` syntax
-rather than `from module import foo`. 
+Avoid wildcard * imports. So called "Star" imports import every module member that's name doesn't start with `_` into the current scope,
+which can quickly lead to name clashes and funny errors.
+
+Do not make relative imports.
+
+Imported modules should be divided into 3 groups stdlib/third-party/project in the following order separated
+by a single newline; each group should be sorted alphabetically by full module/object name.
+
+If you need to use plenty of members from some module, use the `import module` syntax rather than `from module import foo`.
+Always use `import module` syntax for python standard library, specifically instead of `from os.path import join` use `import os`.
+
 Sort imported modules as well as all imported functions by name, alphabetically. Our brains are very good at bi-secting names
-in alphabet order.
+in alphabetical order.
+
+Unless you have a really good reason, don't make local imports in function body.
 
 ### 6. Avoid Using Assertions For Control Flow & Mutating Operations
 
@@ -69,8 +79,8 @@ This also means that if the right-hand side of the assertion mutates certain sta
 
 While one might say that writing out for loops makes the code look dumb and uninteresting, it also makes it
 obvious and easy to understand, which are qualities, not defects. Code that uses map/reduce or several levels
-of nested dictionary and list comprehensions almost always looks scary and it's very hard to deduce the 
-data flow of that particular piece of code. 
+of nested dictionary and list comprehensions almost always looks scary and it's very hard to deduce the
+data flow of that particular piece of code.
 
 ### 8. Avoid Deeply Nested Block Scopes
 
@@ -82,10 +92,40 @@ dark corners of cyclomatic complexity, for nested loops you might want to consid
 function or method. While the code will get a little more verbose, and you might face other difficulties like having to pass
 around variables or even promoting some to instance variables, the resulting code is still much simpler to read then
 condensed web of loops mutating maybe tens of local variables.
- 
+
 ### 9. Write Docstrings That Work Well With Tools
 
 The preferable way of writing docstrings for functions and methods is to use the first style mentioned at
 (https://pythonhosted.org/an_example_pypi_project/sphinx.html#function-definitions). Plenty of editors or plugins are able
 to parse these docstrings and provide targeted code completion and rudimentary validation. For consistency all docstrings
 should start and end with `"""`.
+
+### 10. Avoid Shadowing Python Builtins
+
+type, file, id, map, filter, etc. have already been taken, be creative and invent your own object names.
+
+### 11. String Formatting
+
+#### 11.1 Prefer [new style](https://docs.python.org/3/library/string.html#string-formatting) String Formatting To [old style](https://docs.python.org/2/library/stdtypes.html#string-formatting)
+
+Though there is still a mixture of formatting styles remaining in leapp code base, this rule stands for
+all new contributions.
+Please use
+
+```
+new_style = "{}! {} is coming".format("Brace yourself", "Winter")
+```
+
+instead of
+
+```
+old_style_refactor_me = "%s! %s is coming!" % ("Brace yourself", "Winter")
+old_style_refactor_me = "%(msg)s! %(obj)s is coming!" % {"msg": "Brace yourself", "obj": "Winter"}
+```
+
+#### 11.2 Use Keyword Arguments To Increase Readability
+
+If you pass more than 2 arguments to format function, please invoke format with keyword arguments.
+```
+msg_many_args = "{who} {when} {what}".format(who="A Lanister", when="always", what="pays his debts")
+```
