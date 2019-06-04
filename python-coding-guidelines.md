@@ -129,3 +129,16 @@ If you pass more than 2 arguments to format function, please invoke format with 
 ```
 msg_many_args = "{who} {when} {what}".format(who="A Lanister", when="always", what="pays his debts")
 ```
+
+### 12. Docstrings
+
+Follow [PEP 257 - Docstring Conventions](https://www.python.org/dev/peps/pep-0257)
+  - with the exception, that the summary line of a multi-line docstring shall be on a new line, not on the same line as the opening quotes.
+
+There are some minimal requirements for the information that actor docstrings should provide, to learn more about the specifics please
+consult [leapp-repository contributing guidelines](https://github.com/oamg/leapp-repository/blob/master/CONTRIBUTING.md).
+
+### 13. Underscore usage
+
+For leapp and leapp-repository the `_` and `P_` is reserved for localization. Please don't use it for anything else like
+variable-to-be-discarded.
