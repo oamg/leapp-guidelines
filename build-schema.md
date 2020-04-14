@@ -12,8 +12,6 @@ like that (NVR without %{dist}):
 ```
 <name>-<version>-0.<timestamp>.<short-hash>.<branch>.PR<number>
 ```
-alternatively, in case of builds made for GitLab (just in case of GitLab
-repository, not relevant for upstream now), replace `PR` by `MR`.
 
 Where:
 - **name** is name of the project
