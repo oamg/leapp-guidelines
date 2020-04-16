@@ -6,7 +6,7 @@ like that (NVR without %{dist}):
 
 - for builds made from the master branch:
 ```
-<name>-<version>-1.<timestamp>.<short-hash>.<branch>
+<name>-<version>-100.<timestamp>.<short-hash>.<branch>
 ```
 - for builds made from pull-request:
 ```
